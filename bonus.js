@@ -11,8 +11,8 @@ const ids = [2, 13, 7, 21, 19];
 
 async function fetchJson(url) {
     const res = await fetch(url);
-    const data = await res.json();
-    return data;
+    const books = await res.json();
+    return books;
 };
 
 async function getBooks(arr) {
@@ -28,6 +28,78 @@ async function getBooks(arr) {
 
 };
 
-getBooks(ids)
-    .then(data => console.log('Books:', data))
-    .catch(err => console.log(err))
+// getBooks(ids)
+//     .then(data => console.log('Books:', data))
+//     .catch(err => console.error(err))
+
+
+// Snack 6 (Bonus) - Ordina i libri
+
+// Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
+// Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
+// Ordina l’array booksByPrice in base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
+
+const books = [
+    {
+        title: "React Billionaire",
+        pages: 250,
+        author: {
+            name: 'Alice',
+            age: 35
+        },
+        available: false,
+        price: '101€',
+        tags: ['advanced', 'js', 'react', 'senior']
+    },
+    {
+        title: "Advanced JS",
+        pages: 500,
+        author: {
+            name: 'Bob',
+            age: 20
+        },
+        available: true,
+        price: '25€',
+        tags: ['advanced', 'js', 'mid-senior']
+    },
+    {
+        title: "CSS Secrets",
+        pages: 320,
+        author: {
+            name: 'Alice',
+            age: 17
+        },
+        available: true,
+        price: '8€',
+        tags: ['html', 'css', 'junior']
+    },
+    {
+        title: "HTML Mastery",
+        pages: 200,
+        author: {
+            name: 'Charlie',
+            age: 50
+        },
+        available: false,
+        price: '48€',
+        tags: ['html', 'advanced', 'junior', 'mid-senior']
+    },
+];
+
+
+const areThereAvailableBooks = books.some(book => book.available);
+
+const booksByPrice = books.sort((a, b) => {
+    const priceNoCurrencyA = parseFloat(a.price.replace(/[^0-9]\^./g, ''));
+    const priceNoCurrencyB = parseFloat(b.price.replace(/[^0-9]\^./g, ''));
+    return priceNoCurrencyA - priceNoCurrencyB;
+});
+
+booksByPrice.sort((a, b) => {
+    return b.available - a.available
+})
+
+
+
+console.log(areThereAvailableBooks);
+console.log(booksByPrice);
