@@ -114,3 +114,21 @@ authors.sort((a, b) => {
 
 console.log('authors:', authors)
 console.log('areAuthorsAdult:', areAuthorsAdult);
+
+
+// Snack 4 - Calcola l’età media
+
+// Creare un array (ages) che contiene le età degli autori dei libri.
+// Calcola la somma delle età (agesSum) usando reduce.
+// Stampa in console l’età media degli autori dei libri.
+
+const ages = books.map(book => book.author.age);
+
+const agesSum = ages.reduce((total, currAge) => {
+    return total + currAge
+}, 0)
+
+
+console.log('ages:', ages);
+console.log('agesSum:', agesSum);
+console.log('Age average:', agesSum / ages.length)
