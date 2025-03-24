@@ -100,6 +100,28 @@ booksByPrice.sort((a, b) => {
 })
 
 
+console.log('areThereAvailableBooks:', areThereAvailableBooks);
+console.log('booksByPrice:', booksByPrice);
 
-console.log(areThereAvailableBooks);
-console.log(booksByPrice);
+
+// Snack 7 (Bonus) - Analizza i tag
+// Usa reduce per creare un oggetto (tagCounts) che conta quante volte ogni tag viene usato tra i libri.
+
+// const allTags = books.map((book) => book.tags)
+
+
+
+const tagCounts = books.reduce((acc, curr) => {
+    curr.tags.forEach((tag) => {
+        if (acc[tag]) {
+            acc[tag] += 1;
+        } else {
+            acc[tag] = 1;
+        }
+    });
+
+    return acc;
+}, {});
+
+console.log('tagCounts:', tagCounts);
+
